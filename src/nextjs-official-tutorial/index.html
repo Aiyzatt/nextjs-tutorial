@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/jsx">
+    const app = document.getElementById('app');
+
+    function setTitle(title) {
+      return title ? title : 'default title';
+    } 
+
+    function Header({title}) {
+      return <h1>{setTitle(title)}</h1>;
+    }
+
+    function HomePage() {
+
+      function handleClick() {
+        setLikes(likes + 1);
+      }
+
+      const names = ['Taq', 'Luca', 'Oto', 'Xi'];
+      const [likes, setLikes] = React.useState(0);
+
+      return (
+        <div>
+          <Header title="Develop. Preview. Ship. 🚀" />
+          <ul>
+            {
+              names.map((name, index) => {
+                return <li key={name}>{name}</li>;
+              })
+            }
+          </ul>
+
+          <button onClick={handleClick}>Like ({likes})</button>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<HomePage />, app);
+  </script>
+</body>
+</html>
